@@ -29,9 +29,8 @@ app.post("/api/users", userHandlers.postUser);
 app.post("/api/movies", validateMovie, movieHandlers.postMovie);
 app.post("/api/users", validateUser, userHandlers.postUser);
 
-app.put("/api/movies/:id", validateMovie, movieHandlers.putMovie);
-app.put("/api/users/:id", validateUser, userHandlers.putUser);
-
+app.put("/api/movies/:id", movieHandlers.updateMovie);
+app.put("/api/users/:id", userHandlers.updateUser);
 
 
 
