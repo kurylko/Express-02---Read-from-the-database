@@ -3,6 +3,8 @@ require("dotenv").config();
 const movieHandlers = require("./movieHandlers");
 const userHandlers = require("./userHandlers");
 const { validateMovie, validateUser } = require("./validators.js");
+const { hashPassword } = require("./auth.js");
+
 
 const port = process.env.APP_PORT ?? 5000;
 
@@ -28,6 +30,8 @@ app.get("/api/users/:id", userHandlers.getUserById);
 
 app.post("/api/movies", validateMovie, movieHandlers.postMovie);
 app.post("/api/users", validateUser, userHandlers.postUser);
+app.post("/api/users", hashPassword, userHandlers.postUser);
+
 
 app.put("/api/movies/:id", movieHandlers.updateMovie);
 app.put("/api/users/:id", userHandlers.updateUser);
