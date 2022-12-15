@@ -32,12 +32,12 @@ const getUserById = (req, res) => {
 };
 
 const postUser = (req, res) => {
-    const { firstname, lastname, email, city, language } = req.body;
+    const { firstname, lastname, email, city, language, hashedPassword } = req.body;
 
     database
         .query(
-            "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
-            [firstname, lastname, email, city, language]
+            "INSERT INTO users(firstname, lastname, email, city, language, hashedPassword) VALUES (?, ?, ?, ?, ?, ?)",
+            [firstname, lastname, email, city, language, hashedPassword]
         )
         .then(([result]) => {
             res.location(`/api/users/${result.insertId}`).sendStatus(201);
@@ -48,23 +48,6 @@ const postUser = (req, res) => {
         });
 };
 
-{/*const putUser = (req, res) => {
-    console.log(req.params, req.body)
-    const { firstname, lastname, email, city, language } = req.params.id.body;
-    console.log('userupd', firstname)
-    database
-        .query(
-            "UPDATE users SET firstname = ?, lastname = ?, email = ?, city = ?, language = ? where id = ?)",
-            [firstname, lastname, email, city, language]
-        )
-        .then(([result]) => {
-            res.location(`/api/users/${result.insertId}`).sendStatus(201);
-        })
-        .catch((err) => {
-            console.error('Err - >', err);
-            res.status(500).send("Error changing the User");
-        });
-}*/}
 
 const updateUser = (req, res) => {
     const id = parseInt(req.params.id);
@@ -106,6 +89,9 @@ const deleteUser = (req, res) => {
             res.status(500).send("Error deleting the user");
         });
 };
+
+
+
 
 module.exports = {
     getUsers,

@@ -25,9 +25,6 @@ const movies = [
   },
 ];
 
-{/*const getMovies = (req, res) => {
-  res.json(movies);
-};*/}
 
 
 const database = require("./database");
@@ -63,11 +60,6 @@ const getMovieById = (req, res) => {
 };
 
 
-{/*const postMovie = (req, res) => {
-  console.log(req.body);
-  res.send("Post route is working 🎉");
-};*/}
-
 
 const postMovie = (req, res) => {
   const { title, director, year, color, duration } = req.body;
@@ -87,21 +79,6 @@ const postMovie = (req, res) => {
 };
 
 
-{/*const putMovie = (req, res) => {
-  const { title, director, year, color, duration } = req.params.id.body;
-  database
-    .query(
-      "UPDATE movies SET title = ?, director = ?, year = ?, color = ?, duration = ? where id = ?)",
-      [title, director, year, color, duration]
-    )
-    .then(([result]) => {
-      res.location(`/api/movies/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      console.error('Err - >', err);
-      res.status(500).send("Error changing the Movie");
-    });
-}*/}
 
 const updateMovie = (req, res) => {
   const id = parseInt(req.params.id);

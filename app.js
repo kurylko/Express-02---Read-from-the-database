@@ -25,12 +25,15 @@ app.get("/api/movies/:id", movieHandlers.getMovieById);
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUserById);
 
-//app.post("/api/movies", movieHandlers.postMovie);
-//app.post("/api/users", userHandlers.postUser);
 
 app.post("/api/movies", validateMovie, movieHandlers.postMovie);
+
 app.post("/api/users", validateUser, userHandlers.postUser);
 app.post("/api/users", hashPassword, userHandlers.postUser);
+
+{/*app.post("/api/login"(req, res => {
+  const {email, password} = req.body;
+}));*/}
 
 
 app.put("/api/movies/:id", movieHandlers.updateMovie);
